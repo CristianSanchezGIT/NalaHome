@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
+    <title>Nala Boutique Home - Tienda de Detalles para el Hogar</title>
+    <link rel="icon" type="image/png" href="../imagenes/iconos/icono.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #FAF5F2;
+            color: #5C3B65;
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #5C3B65 0%, #8B579F 100%);
+            color: #FAF5F2;
+            padding: 10px 20px;
+            box-shadow: 0 8px 32px rgba(139, 87, 159, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .logo-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .logo-header:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-header:visited, .logo-header:focus {
+            text-decoration: none;
+        }
+
+        .logo-header img {
+            width: 58px;
+            height: 58px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: #E8D9F0;
+            padding: 3px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5em, 4vw, 2.2em);
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 0.5px;
+            color: #FAF5F2;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: #FAF5F2;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:visited, .nav-btn:focus {
+            color: #FAF5F2;
+            text-decoration: none;
+        }
+
+        .nav-btn.active {
+            background: #E8D9F0;
+            color: #5C3B65;
+            border-color: #E8D9F0;
+            text-decoration: none;
+        }
+
+        .nav-btn.active:visited {
+            color: #5C3B65;
+            text-decoration: none;
+        }
+
+        .carrito-btn {
+            position: relative;
+            padding: 10px 12px !important;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contador {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #8B579F;
+            color: white;
+            font-size: 0.75em;
+            padding: 2px 6px;
+            border-radius: 50%;
+            font-weight: 700;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* Secciones principales */
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Página Inicio - Hero Section */
+        .inicio-page {
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            background: linear-gradient(135deg, rgba(232, 217, 240, 0.5) 0%, rgba(185, 145, 204, 0.2) 100%);
+            border-radius: 20px;
+            min-height: auto;
+        }
+
+        .inicio-top {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .inicio-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .inicio-slider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 600px;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(92, 59, 101, 0.2);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slider-slide {
+            min-width: 100%;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+        }
+
+        .slider-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .slider-btn {
+            background: rgba(139, 87, 159, 0.8);
+            color: #FAF5F2;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .slider-btn:hover {
+            background: rgba(139, 87, 159, 1);
+            transform: scale(1.1);
+        }
+
+        .slider-btn:active {
+            transform: scale(0.95);
+        }
+
+        .logo-inicio {
+            width: 280px;
+            height: 280px;
+            border-radius: 20px;
+            object-fit: contain;
+            box-shadow: none;
+            flex-shrink: 0;
+            background: transparent;
+        }
+
+        .inicio-page h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2em, 5vw, 3em);
+            color: #5C3B65;
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .inicio-page .subtitle {
+            font-size: clamp(1em, 3vw, 1.3em);
+            color: #8B579F;
+            margin-bottom: 12px;
+            font-weight: 500;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .inicio-page p {
+            font-size: clamp(0.95em, 2.5vw, 1.1em);
+            color: #5C3B65;
+            margin-bottom: 20px;
+            max-width: 650px;
+            line-height: 1.7;
+            opacity: 0.85;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Botones */
+        .btn-primary {
+            background: linear-gradient(135deg, #8B579F 0%, #5C3B65 100%);
+            color: #FAF5F2;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            -webkit-user-select: none;
+            box-shadow: 0 6px 20px rgba(139, 87, 159, 0.2);
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(139, 87, 159, 0.35);
+        }
+
+        .btn-primary:visited, .btn-primary:focus {
+            color: #FAF5F2;
+            text-decoration: none;
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+
+        /* Página Productos */
+        .products-header {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .products-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5em, 4vw, 2.2em);
+            color: #5C3B65;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .products-header p {
+            font-size: 0.95em;
+            color: #8B579F;
+            opacity: 0.85;
+            margin: 0;
+        }
+
+        /* Buscador */
+        .buscador-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .buscador-input {
+            width: 100%;
+            max-width: 300px;
+            padding: 12px 18px;
+            border: 2px solid #E8D9F0;
+            border-radius: 25px;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            color: #5C3B65;
+            background: #FAF5F2;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(139, 87, 159, 0.1);
+        }
+
+        .buscador-input:focus {
+            outline: none;
+            border-color: #8B579F;
+            box-shadow: 0 6px 20px rgba(139, 87, 159, 0.2);
+            background: white;
+        }
+
+        .buscador-input::placeholder {
+            color: #B991CC;
+        }
+
+        h3 {
+            color: #5C3B65;
+            font-size: 1.3em;
+            margin: 0 0 12px 0;
+            font-weight: 600;
+        }
+
+        /* Categorías */
+        #categorias {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 8px;
+            justify-items: stretch;
+        }
+
+        .categoria {
+            background: white;
+            border: 2px solid #E8D9F0;
+            border-radius: 14px;
+            padding: 4px 3px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(92, 59, 101, 0.08);
+            font-size: 0.95em;
+            font-weight: 500;
+            color: #5C3B65;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            min-height: 80px;
+            justify-content: center;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.1;
+        }
+
+        .categoria-emoji {
+            font-size: 1.8em;
+            display: block;
+            line-height: 1;
+            margin: 0;
+        }
+
+        .categoria:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(139, 87, 159, 0.15);
+            border-color: #B991CC;
+        }
+
+        .categoria.active {
+            background: linear-gradient(135deg, #8B579F 0%, #B991CC 100%);
+            color: #FAF5F2;
+            border-color: #8B579F;
+            box-shadow: 0 8px 25px rgba(139, 87, 159, 0.25);
+        }
+
+        /* Grid de Productos */
+        #lista-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .producto {
+            background: white;
+            border: none;
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(92, 59, 101, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-top: 4px solid #B991CC;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .producto:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(139, 87, 159, 0.2);
+            border-top-color: #8B579F;
+        }
+
+        .producto-imagen {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .producto h3 {
+            font-size: 1.25em;
+            margin: 8px 0 6px 0;
+            color: #5C3B65;
+            border: none;
+            font-weight: 600;
+        }
+
+        .producto p {
+            color: #8B579F;
+            font-size: 0.9em;
+            margin: 5px 0;
+            opacity: 0.9;
+            flex-grow: 1;
+        }
+
+        .precio {
+            font-size: 1.6em;
+            font-weight: 700;
+            margin: 10px 0 8px 0;
+            color: #8B579F;
+        }
+
+        .precio-original {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .descuento-badge {
+            background: #FF6B6B;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .categoria-badge {
+            display: inline-block;
+            background: #E8D9F0;
+            color: #5C3B65;
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 8px 0 0 0;
+            font-weight: 600;
+        }
+
+        .btn-agregar {
+            background: linear-gradient(135deg, #8B579F 0%, #B991CC 100%);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 12px;
+            display: inline-block;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-agregar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 87, 159, 0.3);
+        }
+
+        .btn-agregar:active {
+            transform: translateY(-1px);
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #8B579F;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: #5C3B65;
+            transform: rotate(90deg);
+        }
+
+        /* Carrusel */
+        .carrusel {
+            position: relative;
+            width: 100%;
+            margin-bottom: 12px;
+            background: #F5EEF7;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .carrusel img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .carrusel img:hover {
+            transform: scale(1.02);
+        }
+
+        .carrusel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(139, 87, 159, 0.8);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3em;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .carrusel-btn:hover {
+            background: rgba(139, 87, 159, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carrusel-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .carrusel-btn.prev {
+            left: 12px;
+        }
+
+        .carrusel-btn.next {
+            right: 12px;
+        }
+
+        .carrusel-info {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-container {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 2em;
+            transition: all 0.3s ease;
+            z-index: 3001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .modal-content h3 {
+            font-size: 1.8em;
+            color: #5C3B65;
+            margin-bottom: 8px;
+            border: none;
+            margin-top: 0;
+            font-weight: 700;
+        }
+
+        .modal-content p {
+            color: #8B579F;
+            margin: 8px 0;
+            line-height: 1.8;
+        }
+
+        .modal-content .precio {
+            font-size: 1.9em;
+            font-weight: 700;
+            margin: 12px 0 8px 0;
+            color: #8B579F;
+        }
+
+        .modal-content .categoria-badge {
+            background: #E8D9F0;
+            color: #5C3B65;
+            margin: 8px 0;
+        }
+
+        /* Botón WhatsApp */
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            min-height: 48px;
+            white-space: nowrap;
+            user-select: none;
+            -webkit-user-select: none;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.2);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:active {
+            transform: translateY(-1px);
+        }
+
+        /* Carrito */
+        .carrito-vacio {
+            text-align: center;
+            padding: 60px 20px;
+            color: #8B579F;
+            font-size: 1.1em;
+        }
+
+        .carrito-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .carrito-item {
+            background: #FAF5F2;
+            border: 1px solid #E8D9F0;
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .carrito-item:hover {
+            box-shadow: 0 4px 12px rgba(139, 87, 159, 0.1);
+            border-color: #B991CC;
+        }
+
+        .carrito-item img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .carrito-item-info {
+            flex-grow: 1;
+        }
+
+        .carrito-item-nombre {
+            font-weight: 600;
+            color: #5C3B65;
+            margin-bottom: 5px;
+        }
+
+        .carrito-item-precio {
+            color: #8B579F;
+            font-size: 0.95em;
+            margin-bottom: 8px;
+        }
+
+        .cantidad-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid #E8D9F0;
+            border-radius: 20px;
+            padding: 4px 8px;
+        }
+
+        .cantidad-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #8B579F;
+            font-weight: 700;
+            font-size: 1.1em;
+            padding: 0 6px;
+            transition: all 0.2s ease;
+        }
+
+        .cantidad-btn:hover {
+            color: #5C3B65;
+        }
+
+        .cantidad-numero {
+            font-weight: 600;
+            color: #5C3B65;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .btn-eliminar {
+            background: none;
+            border: none;
+            color: #B991CC;
+            cursor: pointer;
+            font-size: 1.2em;
+            padding: 5px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-eliminar:hover {
+            color: #8B579F;
+            transform: scale(1.15);
+        }
+
+        .carrito-total {
+            background: #E8D9F0;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #5C3B65;
+        }
+
+        .carrito-total-cantidad {
+            font-size: 1.2em;
+            color: #8B579F;
+        }
+
+        .btn-comprar-carrito {
+            width: 100%;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 48px;
+        }
+
+        .btn-comprar-carrito:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Página Contacto */
+        .contacto-page {
+            background: linear-gradient(135deg, rgba(232, 217, 240, 0.4) 0%, rgba(185, 145, 204, 0.15) 100%);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(92, 59, 101, 0.08);
+        }
+
+        .contacto-page h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #5C3B65;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .contacto-page > p {
+            text-align: center;
+            font-size: 1.1em;
+            color: #8B579F;
+            margin-bottom: 20px;
+        }
+
+        .datos-contacto {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .dato {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #B991CC;
+            box-shadow: 0 4px 15px rgba(92, 59, 101, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .dato:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 87, 159, 0.15);
+            border-left-color: #8B579F;
+        }
+
+        .dato strong {
+            color: #5C3B65;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.15em;
+            font-weight: 700;
+        }
+
+        .dato p {
+            color: #8B579F;
+            margin: 0;
+            font-size: 1em;
+        }
+
+        .contacto-buttons {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #5C3B65 0%, #8B579F 100%);
+            color: #FAF5F2;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 30px;
+            font-size: 0.95em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 8px;
+            opacity: 0.95;
+            background: #E8D9F0;
+            padding: 3px;
+        }
+
+        footer p {
+            margin: 10px 0;
+            opacity: 0.9;
+        }
+
+        /* Responsive - Tablet */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .logo-header img {
+                width: 55px;
+                height: 55px;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            .page-container {
+                padding: 30px 15px;
+            }
+
+            .inicio-page {
+                padding: 30px 15px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .inicio-top {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .inicio-bottom {
+                text-align: center;
+                align-items: center;
+            }
+
+            .slider-container {
+                width: 450px;
+            }
+
+            .logo-inicio {
+                width: 220px;
+                height: 220px;
+            }
+
+            .inicio-page h2 {
+                font-size: 2.2em;
+            }
+
+            .hero-buttons {
+                gap: 12px;
+            }
+
+            .btn-primary {
+                padding: 12px 28px;
+            }
+
+            .products-header h2 {
+                font-size: 2.2em;
+            }
+
+            #categorias {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            }
+
+            #lista-productos {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .modal-content {
+                padding: 25px;
+                max-width: 95vw;
+            }
+
+            .carrusel img {
+                height: 280px;
+            }
+
+            .contacto-page {
+                padding: 30px;
+            }
+
+            .datos-contacto {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 30px 15px;
+            }
+
+            .footer-logo {
+                width: 75px;
+                height: 75px;
+                background: #E8D9F0;
+                padding: 3px;
+                margin-bottom: 8px;
+            }
+        }
+
+        /* Botón flotante comprar */
+        .btn-comprar-flotante {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.8em;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            text-decoration: none;
+            outline: none;
+        }
+
+        .btn-comprar-flotante:hover {
+            transform: scale(1.15);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-comprar-flotante:active {
+            transform: scale(0.95);
+        }
+
+        .btn-comprar-flotante:visited, .btn-comprar-flotante:focus {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Responsive - Mobile */
+        @media (max-width: 480px) {
+            header {
+                padding: 12px 15px;
+            }
+
+            .header-content {
+                gap: 10px;
+            }
+
+            .logo-header img {
+                width: 48px;
+                height: 48px;
+            }
+
+            h1 {
+                font-size: 1.3em;
+            }
+
+            nav {
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 6px 12px;
+                font-size: 0.8em;
+                flex: 1;
+                min-width: 70px;
+            }
+
+            .page-container {
+                padding: 20px 12px;
+            }
+
+            .inicio-page {
+                padding: 20px 12px;
+                border-radius: 16px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .inicio-top {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                gap: 15px;
+            }
+
+            .inicio-bottom {
+                text-align: center;
+                align-items: center;
+                width: 100%;
+            }
+
+            .slider-container {
+                width: 300px;
+            }
+
+            .slider-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 1em;
+            }
+
+            .logo-inicio {
+                width: 160px;
+                height: 160px;
+            }
+
+            .inicio-page h2 {
+                font-size: 1.8em;
+                margin-bottom: 12px;
+            }
+
+            .inicio-page .subtitle {
+                font-size: 1em;
+            }
+
+            .inicio-page p {
+                font-size: 0.95em;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .btn-primary {
+                width: 100%;
+                padding: 12px 20px;
+            }
+
+            .products-header h2 {
+                font-size: 1.8em;
+            }
+
+            h3 {
+                font-size: 1.15em;
+            }
+
+            #categorias {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .categoria {
+                padding: 3px 2px;
+                font-size: 0.88em;
+                min-height: 75px;
+                gap: 2px;
+            }
+
+            .categoria-emoji {
+                font-size: 1.6em;
+            }
+
+            #lista-productos {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 12px;
+            }
+
+            .producto {
+                padding: 12px;
+                border-radius: 12px;
+                border-top-width: 3px;
+            }
+
+            .producto-imagen {
+                height: 140px;
+            }
+
+            .producto h3 {
+                font-size: 1.05em;
+            }
+
+            .producto p {
+                font-size: 0.85em;
+            }
+
+            .precio {
+                font-size: 1.4em;
+            }
+
+            .categoria-badge {
+                font-size: 0.8em;
+                padding: 5px 12px;
+            }
+
+            .modal-content {
+                padding: 15px;
+                max-width: 98vw;
+                border-radius: 14px;
+            }
+
+            .modal-close {
+                width: 36px;
+                height: 36px;
+                font-size: 1.2em;
+                top: 10px;
+                right: 10px;
+            }
+
+            .carrusel {
+                margin-bottom: 15px;
+                border-radius: 10px;
+            }
+
+            .carrusel img {
+                height: 200px;
+                border-radius: 10px;
+            }
+
+            .carrusel-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1.1em;
+            }
+
+            .carrusel-info {
+                font-size: 0.8em;
+                padding: 4px 10px;
+                bottom: 8px;
+                right: 8px;
+            }
+
+            .modal-content h3 {
+                font-size: 1.5em;
+            }
+
+            .modal-content p {
+                font-size: 0.95em;
+            }
+
+            .modal-content .precio {
+                font-size: 1.6em;
+            }
+
+            .btn-whatsapp {
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 0.95em;
+            }
+
+            .contacto-page {
+                padding: 15px;
+                border-radius: 12px;
+            }
+
+            .contacto-page h2 {
+                font-size: 1.8em;
+            }
+
+            .contacto-page > p {
+                font-size: 0.95em;
+            }
+
+            .datos-contacto {
+                gap: 15px;
+            }
+
+            .dato {
+                padding: 15px;
+                border-radius: 10px;
+            }
+
+            .dato strong {
+                font-size: 1em;
+            }
+
+            .dato p {
+                font-size: 0.95em;
+            }
+
+            footer {
+                padding: 20px 12px;
+                font-size: 0.9em;
+            }
+
+            .footer-logo {
+                width: 60px;
+                height: 60px;
+                background: #E8D9F0;
+                padding: 3px;
+                margin-bottom: 8px;
+            }
+
+            .lightbox-close {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5em;
+                top: 10px;
+                right: 10px;
+            }
+
+            .btn-comprar-flotante {
+                bottom: 20px;
+                right: 20px;
+                width: 55px;
+                height: 55px;
+                font-size: 1.6em;
+                box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+            }
+
+            .btn-agregar {
+                font-size: 0.9em;
+                padding: 8px 14px;
+            }
+        }
+
+        /* Landscape */
+        @media (max-height: 500px) and (orientation: landscape) {
+            header {
+                padding: 10px 15px;
+            }
+
+            .header-content {
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 1.2em;
+            }
+
+            .page-container {
+                padding: 15px;
+            }
+
+            .logo-inicio {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 15px;
+            }
+
+            .inicio-page h2 {
+                font-size: 1.5em;
+            }
+
+            .carrusel img {
+                height: 180px;
+            }
+
+            .modal-content {
+                max-height: 80vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#inicio" class="logo-header" onclick="mostrarPagina('inicio'); return false;">
+                <img src="../imagenes/iconos/icono.png" alt="Logo Nala Boutique Home">
+                <h1>Nala Boutique Home</h1>
+            </a>
+            <nav>
+                <a href="#inicio" class="nav-btn active" data-page="inicio" onclick="mostrarPagina('inicio'); return false;">Inicio</a>
+                <a href="#productos" class="nav-btn" data-page="productos" onclick="mostrarPagina('productos'); return false;">Productos</a>
+                <a href="#contacto" class="nav-btn" data-page="contacto" onclick="mostrarPagina('contacto'); return false;">Contacto</a>
+                <button class="nav-btn carrito-btn" onclick="abrirCarrito()" id="carritoBtn">🛒 <span id="contadorCarrito" class="contador">0</span></button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Modal de producto -->
+    <div class="modal" id="productoModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="cerrarProducto()">✕</button>
+            <div id="modalProducto"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="cerrarLightbox()">✕</button>
+        <div class="lightbox-container">
+            <img id="lightboxImg" src="" alt="Imagen ampliada">
+        </div>
+    </div>
+
+    <div class="page-container">
+        <!-- Página Inicio -->
+        <div class="page active" id="inicioPagina">
+            <div class="inicio-page">
+                <div class="inicio-top">
+                    <img src="../imagenes/iconos/icono.png" alt="Logo Nala Boutique Home" class="logo-inicio">
+                    <div class="inicio-slider">
+                        <button class="slider-btn prev" onclick="sliderAnterior()">❮</button>
+                        <div class="slider-container">
+                            <div class="slider-track" id="sliderTrack">
+                                <!-- Las imágenes se generarán con JavaScript -->
+                            </div>
+                        </div>
+                        <button class="slider-btn next" onclick="sliderSiguiente()">❯</button>
+                    </div>
+                </div>
+                <div class="inicio-bottom">
+                    <h2>Detalles que Enamoran</h2>
+                    <p class="subtitle">Hogar que Inspira</p>
+                    <p>Bienvenido a Nala Boutique Home, tu tienda de confianza con productos especiales que transforman tu hogar en un espacio cálido, acogedor y lleno de amor.</p>
+                    <div class="hero-buttons">
+                        <a href="#productos" class="btn-primary" onclick="mostrarPagina('productos'); return false;">🛍️ Explorar Productos</a>
+                        <a href="#contacto" class="btn-primary" onclick="mostrarPagina('contacto'); return false;">💬 Contáctanos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página Productos -->
+        <div class="page" id="productosPagina">
+            <div class="products-header">
+                <h2>Nuestros Productos</h2>
+                <p>Cada detalle cuidado con amor para ti</p>
+            </div>
+            
+            <h3>Selecciona una categoría:</h3>
+            <div id="categorias"></div>
+            
+            <div class="buscador-container">
+                <input type="text" id="inputBuscador" class="buscador-input" placeholder="🔍 Buscar productos..." oninput="filtrarProductos()">
+            </div>
+
+            <div id="lista-productos"></div>
+        </div>
+
+        <!-- Página Contacto -->
+        <div class="page" id="contactoPagina">
+            <div class="contacto-page">
+                <h2>Contacto</h2>
+                <p>¿Tienes preguntas? Nos encantaría saber de ti. Contáctanos ahora.</p>
+                
+                <div class="datos-contacto">
+                    <div class="dato">
+                        <strong><img src="../imagenes/iconos/Whatsapp.png" alt="WhatsApp" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px; mix-blend-mode: multiply;"> WhatsApp</strong>
+                        <p><a href="https://wa.me/573170674561?text=Hola%20Nala%20Boutique%20Home%2C%20tengo%20una%20pregunta" target="_blank" style="color: #8B579F; text-decoration: none;">+57 3170674561</a></p>
+                    </div>
+                    <div class="dato">
+                        <strong><img src="../imagenes/iconos/tiktok.png" alt="TikTok" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px; filter: invert(1);"> TikTok</strong>
+                        <p><a href="https://www.tiktok.com/@nala.boutique.hom?_r=1&_t=ZS-9B6FT0qHdrS" target="_blank" style="color: #8B579F; text-decoration: none;">@nala.boutique.hom</a></p>
+                    </div>
+                    <div class="dato">
+                        <strong>📍 Ubicación</strong>
+                        <p>Bogota, Colombia</p>
+                    </div>
+                </div>
+                
+                <div class="contacto-buttons">
+                    <a href="https://wa.me/573170674561?text=Hola%20Nala%20Boutique%20Home%2C%20tengo%20una%20pregunta" class="btn-whatsapp">💬 Contáctanos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página Carrito -->
+        <div class="page" id="carritoPagina">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 style="color: #5C3B65; margin-bottom: 20px; text-align: center;">🛒 Mi Carrito</h2>
+                <div id="contenidoCarritoPagina"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-container">
+            <img id="lightboxImg" src="" alt="Imagen ampliada">
+            <button class="lightbox-close" onclick="cerrarLightbox()">✕</button>
+        </div>
+    </div>
+
+    <!-- Botón flotante Comprar -->
+    <a href="#carrito" class="btn-comprar-flotante" title="Ver carrito y comprar" onclick="mostrarPagina('carrito'); return false;">🛒</a>
+
+    <footer>
+        <img src="../imagenes/iconos/icono.png" alt="Logo Nala Boutique Home" class="footer-logo">
+        <p><strong>Nala Boutique Home</strong></p>
+        <p>Detalles que enamoran, hogar que inspira</p>
+        <p>&copy; 2026 Nala Boutique Home. Todos los derechos reservados.</p>
+        <p>
+            <a href="https://www.tiktok.com/@nala.boutique.hom?_r=1&_t=ZS-9B6FT0qHdrS" target="_blank" style="color: #FAF5F2; text-decoration: none; margin-right: 20px; display: inline-flex; align-items: center; gap: 8px;">
+                <img src="../imagenes/iconos/tiktok.png" alt="TikTok" style="width: 24px; height: 24px; filter: invert(1);">
+                Síguenos en TikTok
+            </a>
+            <a href="https://wa.me/573170674561?text=Hola%20Nala%20Boutique%20Home%2C%20tengo%20una%20pregunta" target="_blank" style="color: #FAF5F2; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                <img src="../imagenes/iconos/Whatsapp.png" alt="WhatsApp" style="width: 24px; height: 24px; mix-blend-mode: screen;">
+                Contáctanos por WhatsApp
+            </a>
+        </p>
+    </footer>
+
+    <script src="./productos.js"></script>
+    <script>
+        let productos = [];
+        const categorias = ["Electrodomésticos", "Tecnología", "Flores y Detalles", "Peluches", "Cerámicas", "Velas"];
+        let carrito = [];
+        let categoriaSeleccionada = null;
+        let terminoBusqueda = '';
+
+        // Cargar carrito del localStorage
+        function cargarCarrito() {
+            const carritoGuardado = localStorage.getItem('carritoNala');
+            if (carritoGuardado) {
+                carrito = JSON.parse(carritoGuardado);
+            }
+            actualizarContadorCarrito();
+        }
+
+        // Guardar carrito en localStorage
+        function guardarCarrito() {
+            localStorage.setItem('carritoNala', JSON.stringify(carrito));
+            actualizarContadorCarrito();
+        }
+
+        // Agregar producto al carrito
+        function agregarAlCarrito(nombreProducto) {
+            const productoData = productosData.find(p => p.nombre === nombreProducto);
+            const producto = productos.find(p => p.nombre === nombreProducto);
+            if (!producto || !productoData) return;
+
+            const itemCarrito = carrito.find(item => item.nombre === nombreProducto);
+            
+            if (itemCarrito) {
+                itemCarrito.cantidad++;
+            } else {
+                carrito.push({
+                    nombre: producto.nombre,
+                    precioConDescuento: producto.precioConDescuento,
+                    precioOriginal: producto.precioOriginal,
+                    porcentajeDescuento: producto.porcentajeDescuento,
+                    imagen: producto.imagenes && producto.imagenes.length > 0 ? producto.imagenes[0].url : '../imagenes/iconos/icono.png',
+                    cantidad: 1,
+                    whatsapp: productoData.whatsapp
+                });
+            }
+            
+            guardarCarrito();
+            
+            // Mostrar notificación
+            const btn = event.target;
+            const textoOriginal = btn.textContent;
+            btn.textContent = '✅ Agregado';
+            btn.style.background = 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)';
+            setTimeout(() => {
+                btn.textContent = textoOriginal;
+                btn.style.background = '';
+            }, 1500);
+        }
+
+        // Actualizar contador del carrito
+        function actualizarContadorCarrito() {
+            const contador = document.getElementById('contadorCarrito');
+            const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            contador.textContent = total;
+            contador.style.display = total > 0 ? 'block' : 'none';
+        }
+
+        // Abrir página del carrito
+        function abrirCarrito() {
+            actualizarPaginaCarrito();
+            mostrarPagina('carrito');
+        }
+
+        // Actualizar contenido de la página del carrito
+        function actualizarPaginaCarrito() {
+            const contenido = document.getElementById('contenidoCarritoPagina');
+            
+            if (carrito.length === 0) {
+                contenido.innerHTML = '<div class="carrito-vacio">Tu carrito está vacío 🛒</div>';
+            } else {
+                let html = '<div class="carrito-items">';
+                carrito.forEach((item, index) => {
+                    const precioUnitario = item.precioConDescuento || item.precio || 0;
+                    const precioTotal = precioUnitario * item.cantidad;
+                    html += `
+                        <div class="carrito-item">
+                            <img src="${item.imagen}" alt="${item.nombre}" onerror="this.src='../imagenes/iconos/icono.png'">
+                            <div class="carrito-item-info">
+                                <div class="carrito-item-nombre">${item.nombre}</div>
+                                <div class="carrito-item-precio">$${precioUnitario.toLocaleString('es-CO')} COP x ${item.cantidad} = $${precioTotal.toLocaleString('es-CO')} COP</div>
+                            </div>
+                            <div class="cantidad-control">
+                                <button class="cantidad-btn" onclick="cambiarCantidad(${index}, -1)">−</button>
+                                <span class="cantidad-numero">${item.cantidad}</span>
+                                <button class="cantidad-btn" onclick="cambiarCantidad(${index}, 1)">+</button>
+                            </div>
+                            <button class="btn-eliminar" onclick="quitarDelCarrito(${index})">🗑️</button>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+
+                const precioTotal = carrito.reduce((sum, item) => sum + ((item.precioConDescuento || item.precio || 0) * item.cantidad), 0);
+                
+                html += `
+                    <div class="carrito-total">
+                        <span>Total: <span class="carrito-total-cantidad">$${precioTotal.toLocaleString('es-CO')} COP</span></span>
+                    </div>
+                    <button class="btn-comprar-carrito" onclick="comprarCarrito()">💚 Comprar Todo por WhatsApp</button>
+                `;
+                
+                contenido.innerHTML = html;
+            }
+        }
+
+        // Cambiar cantidad de producto
+        function cambiarCantidad(index, cambio) {
+            carrito[index].cantidad += cambio;
+            
+            if (carrito[index].cantidad <= 0) {
+                quitarDelCarrito(index);
+            } else {
+                guardarCarrito();
+                actualizarPaginaCarrito(); // Actualizar vista
+            }
+        }
+
+        // Quitar producto del carrito
+        function quitarDelCarrito(index) {
+            carrito.splice(index, 1);
+            guardarCarrito();
+            actualizarPaginaCarrito(); // Actualizar vista
+        }
+
+        // Comprar carrito completo
+        function comprarCarrito() {
+            if (carrito.length === 0) return;
+
+            let mensaje = '🛒 *Hola Nala Boutique Home*\n\n*Detalles de mi pedido:*\n\n';
+            let precioTotal = 0;
+
+            carrito.forEach(item => {
+                const precioUnitario = item.precioConDescuento || item.precio || 0;
+                const subtotal = precioUnitario * item.cantidad;
+                precioTotal += subtotal;
+                mensaje += `• ${item.nombre}\n  Cantidad: ${item.cantidad}\n  Precio unitario: $${precioUnitario.toLocaleString('es-CO')}\n  Subtotal: $${subtotal.toLocaleString('es-CO')}\n\n`;
+            });
+
+            mensaje += `📊 *Total del pedido: $${precioTotal.toLocaleString('es-CO')}*\n\n`;
+            mensaje += 'Por favor confirmar disponibilidad y envío. ¡Gracias!';
+
+            const enlaceWhatsApp = 'https://wa.me/573123456789?text=' + encodeURIComponent(mensaje);
+            window.open(enlaceWhatsApp, '_blank');
+        }
+
+        let sliderIndiceActual = 0;
+        let sliderImagenes = [];
+        let sliderIntervalo = null;
+
+        function inicializarSliderInicio() {
+            // Cargar imágenes del slider desde la carpeta slide
+            sliderImagenes = [
+                { url: '../imagenes/slide/slide1.png', nombre: 'Slide 1' },
+                { url: '../imagenes/slide/slide2.png', nombre: 'Slide 2' },
+                { url: '../imagenes/slide/slide3.png', nombre: 'Slide 3' }
+            ];
+
+            // Si no hay imágenes, agregar el logo
+            if (sliderImagenes.length === 0) {
+                sliderImagenes.push({
+                    url: '../imagenes/iconos/icono.png',
+                    nombre: 'Logo'
+                });
+            }
+
+            const sliderTrack = document.getElementById('sliderTrack');
+            sliderTrack.innerHTML = '';
+
+            sliderImagenes.forEach(img => {
+                const slide = document.createElement('div');
+                slide.className = 'slider-slide';
+                slide.innerHTML = `<img src="${img.url}" alt="${img.nombre}" onerror="this.src='../imagenes/iconos/icono.png'">`;
+                sliderTrack.appendChild(slide);
+            });
+
+            // Iniciar la rotación automática
+            iniciarRotacionSlider();
+        }
+
+        function iniciarRotacionSlider() {
+            if (sliderIntervalo) clearInterval(sliderIntervalo);
+            
+            sliderIntervalo = setInterval(() => {
+                sliderIndiceActual = (sliderIndiceActual + 1) % sliderImagenes.length;
+                rotarSlider();
+            }, 3000);
+        }
+
+        function rotarSlider() {
+            const sliderTrack = document.getElementById('sliderTrack');
+            const desplazamiento = -sliderIndiceActual * 100;
+            sliderTrack.style.transform = `translateX(${desplazamiento}%)`;
+        }
+
+        function sliderAnterior() {
+            if (sliderIntervalo) clearInterval(sliderIntervalo);
+            sliderIndiceActual = (sliderIndiceActual - 1 + sliderImagenes.length) % sliderImagenes.length;
+            rotarSlider();
+            iniciarRotacionSlider();
+        }
+
+        function sliderSiguiente() {
+            if (sliderIntervalo) clearInterval(sliderIntervalo);
+            sliderIndiceActual = (sliderIndiceActual + 1) % sliderImagenes.length;
+            rotarSlider();
+            iniciarRotacionSlider();
+        }
+
+        function calcularPrecioOriginal(precioConDescuento, porcentajeDescuento) {
+            if (porcentajeDescuento === 0) return precioConDescuento;
+            return Math.round((precioConDescuento / (1 - porcentajeDescuento / 100)) * 100) / 100;
+        }
+
+        function inicializar() {
+            cargarCarrito();
+            productos = productosData.map(p => {
+                const precioConDescuento = parseFloat(p.precio);
+                const porcentajeDescuento = p.porcentajeDescuento || 0;
+                const precioOriginal = calcularPrecioOriginal(precioConDescuento, porcentajeDescuento);
+                
+                return {
+                    nombre: p.nombre || '',
+                    descripcion: p.descripcion || '',
+                    precioConDescuento: precioConDescuento,
+                    precioOriginal: precioOriginal,
+                    porcentajeDescuento: porcentajeDescuento,
+                    categoria: p.categoria || '',
+                    imagenes: p.imagenes || [{ name: 'default', url: '../imagenes/iconos/icono.png' }],
+                    whatsapp: p.whatsapp || ''
+                };
+            });
+            console.log('✅ Productos cargados:', productos.length);
+            inicializarSliderInicio();
+            mostrarCategorias();
+            mostrarProductos();
+        }
+
+        window.addEventListener('load', inicializar);
+        window.addEventListener('hashchange', handleHashChange);
+
+        function handleHashChange() {
+            const hash = window.location.hash.slice(1) || 'inicio';
+            mostrarPagina(hash);
+        }
+
+        function mostrarPagina(pagina) {
+            // Actualizar URL sin recarga
+            if (window.location.hash.slice(1) !== pagina) {
+                window.location.hash = pagina;
+                return;
+            }
+
+            // Ocultar todas las páginas
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pagina + 'Pagina').classList.add('active');
+            
+            // Actualizar botones de navegación
+            document.querySelectorAll('.nav-btn[data-page]').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.querySelector(`.nav-btn[data-page="${pagina}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+            
+            // Cargar contenido específico
+            if (pagina === 'productos') {
+                mostrarCategorias();
+                mostrarProductos();
+            } else if (pagina === 'carrito') {
+                actualizarPaginaCarrito();
+            }
+
+            // Scroll al inicio
+            window.scrollTo(0, 0);
+        }
+
+        function mostrarProductos(filtro = null) {
+            const contenedor = document.getElementById('lista-productos');
+            contenedor.innerHTML = '';
+
+            // Si se pasa un filtro, lo establecemos como categoría seleccionada
+            if (filtro !== null && filtro !== categoriaSeleccionada) {
+                categoriaSeleccionada = filtro;
+            }
+
+            let productosFiltrados = productos;
+
+            // Filtrar por categoría
+            if (categoriaSeleccionada) {
+                productosFiltrados = productosFiltrados.filter(p => p.categoria === categoriaSeleccionada);
+            }
+
+            // Filtrar por término de búsqueda
+            if (terminoBusqueda) {
+                productosFiltrados = productosFiltrados.filter(p => 
+                    p.nombre.toLowerCase().includes(terminoBusqueda) || 
+                    p.descripcion.toLowerCase().includes(terminoBusqueda)
+                );
+            }
+
+            if (productosFiltrados.length === 0) {
+                const mensaje = terminoBusqueda ? 
+                    `No encontramos productos que coincidan con "${terminoBusqueda}"` :
+                    'No hay productos en esta categoría';
+                contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #8B579F;">${mensaje}</p>`;
+                return;
+            }
+
+            productosFiltrados.forEach(producto => {
+                const div = document.createElement('div');
+                div.className = 'producto';
+                div.onclick = (e) => {
+                    if (!e.target.classList.contains('btn-agregar')) {
+                        abrirProducto(producto);
+                    }
+                };
+                const imgUrl = producto.imagenes && producto.imagenes.length > 0 
+                    ? producto.imagenes[0].url 
+                    : '../imagenes/iconos/icono.png';
+                div.innerHTML = `
+                    <img src="${imgUrl}" alt="${producto.nombre}" class="producto-imagen" onerror="this.src='../imagenes/iconos/icono.png'">
+                    <h3>${producto.nombre}</h3>
+                    <p>${producto.descripcion.substring(0, 60)}...</p>
+                    <div class="precio-container">
+                        ${producto.porcentajeDescuento > 0 ? `
+                            <div style="display: flex; gap: 10px; align-items: center; justify-content: center;">
+                                <span class="precio-original">$${producto.precioOriginal.toLocaleString('es-CO')}</span>
+                                <span class="descuento-badge">-${producto.porcentajeDescuento}%</span>
+                            </div>
+                            <div class="precio">$${producto.precioConDescuento.toLocaleString('es-CO')} COP</div>
+                        ` : `
+                            <div class="precio">$${producto.precioConDescuento.toLocaleString('es-CO')} COP</div>
+                        `}
+                    </div>
+                    <div class="categoria-badge">${producto.categoria}</div>
+                    <button class="btn-agregar" onclick="agregarAlCarrito('${producto.nombre}')">➕ Agregar</button>
+                `;
+                contenedor.appendChild(div);
+            });
+        }
+
+        function mostrarCategorias() {
+            const div = document.getElementById('categorias');
+            div.innerHTML = '';
+            
+            const emojis = {
+                "Electrodomésticos": "🏠",
+                "Tecnología": "💻",
+                "Flores y Detalles": "🌹",
+                "Peluches": "🧸",
+                "Cerámicas": "🍽️",
+                "Velas": "🕯️"
+            };
+            
+            categorias.forEach(cat => {
+                const btn = document.createElement('div');
+                btn.className = 'categoria';
+                const emoji = emojis[cat] || "🛍️";
+                btn.innerHTML = `<span class="categoria-emoji">${emoji}</span><span>${cat}</span>`;
+                btn.onclick = () => {
+                    document.querySelectorAll('.categoria').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    categoriaSeleccionada = cat;
+                    document.getElementById('inputBuscador').value = '';
+                    terminoBusqueda = '';
+                    filtrarProductos();
+                };
+                div.appendChild(btn);
+            });
+            
+            const btnTodo = document.createElement('div');
+            btnTodo.className = 'categoria active';
+            btnTodo.innerHTML = '<span class="categoria-emoji">🛍️</span><span>Ver Todo</span>';
+            btnTodo.onclick = () => {
+                document.querySelectorAll('.categoria').forEach(b => b.classList.remove('active'));
+                btnTodo.classList.add('active');
+                categoriaSeleccionada = null;
+                document.getElementById('inputBuscador').value = '';
+                terminoBusqueda = '';
+                filtrarProductos();
+            };
+            div.appendChild(btnTodo);
+        }
+
+        function filtrarProductos() {
+            const inputBuscador = document.getElementById('inputBuscador');
+            if (inputBuscador) {
+                terminoBusqueda = inputBuscador.value.toLowerCase().trim();
+            }
+            mostrarProductos();
+        }
+
+        let imagenActual = 0;
+
+        function abrirProducto(producto) {
+            const modal = document.getElementById('productoModal');
+            const div = document.getElementById('modalProducto');
+            imagenActual = 0;
+            
+            const hasMultipleImages = producto.imagenes && producto.imagenes.length > 1;
+            const imgUrl = producto.imagenes && producto.imagenes.length > 0 
+                ? producto.imagenes[0].url 
+                : '../imagenes/iconos/icono.png';
+            
+            let carouselHTML = '';
+            if (hasMultipleImages) {
+                carouselHTML = `
+                    <div class="carrusel">
+                        <button class="carrusel-btn prev" onclick="cambiarImagen(-1, ${producto.imagenes.length})">❮</button>
+                        <img id="carruselImg" src="${imgUrl}" alt="${producto.nombre}" onclick="abrirLightbox(this.src)" onerror="this.src='../imagenes/iconos/icono.png'">
+                        <button class="carrusel-btn next" onclick="cambiarImagen(1, ${producto.imagenes.length})">❯</button>
+                        <div class="carrusel-info">
+                            <span id="carruselActual">1</span> / <span id="carruselTotal">${producto.imagenes.length}</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                carouselHTML = `
+                    <img src="${imgUrl}" alt="${producto.nombre}" onclick="abrirLightbox(this.src)" onerror="this.src='../imagenes/nala-icono.jfif'" style="width: 100%; height: 360px; object-fit: cover; border-radius: 12px; cursor: pointer; margin-bottom: 20px; display: block;">
+                `;
+            }
+            
+            div.innerHTML = `
+                ${carouselHTML}
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; margin-bottom: 15px;">
+                    <h3 style="margin: 0; color: #5C3B65; flex: 1;">${producto.nombre}</h3>
+                    <div style="text-align: right;">
+                        ${producto.porcentajeDescuento > 0 ? `
+                            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 5px;">
+                                <span style="text-decoration: line-through; color: #999; font-size: 0.9em;">$${producto.precioOriginal.toLocaleString('es-CO')}</span>
+                                <span style="background: #FF6B6B; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-weight: 600;">-${producto.porcentajeDescuento}%</span>
+                            </div>
+                            <div class="precio" style="margin: 0; white-space: nowrap; font-weight: 600; color: #8B579F;">$${producto.precioConDescuento.toLocaleString('es-CO')} COP</div>
+                        ` : `
+                            <div class="precio" style="margin: 0; white-space: nowrap; font-weight: 600; color: #8B579F;">$${producto.precioConDescuento.toLocaleString('es-CO')} COP</div>
+                        `}
+                    </div>
+                </div>
+                <div class="categoria-badge">${producto.categoria}</div>
+                <div style="display: flex; gap: 12px; margin: 15px 0;">
+                    <button class="btn-agregar" style="flex: 1; margin: 0;" onclick="agregarAlCarrito('${producto.nombre}'); event.stopPropagation();">➕ Agregar al Carrito</button>
+                    <button class="btn-whatsapp" style="flex: 1; margin: 0; text-align: center; cursor: pointer; border: none; padding: 14px 20px; border-radius: 8px; font-weight: 600;" onclick="cerrarProducto(); mostrarPagina('carrito');">🛒 Ir al Carrito</button>
+                </div>
+                <p style="margin-top: 15px; color: #5C3B65; margin-bottom: 8px;"><strong>Descripción:</strong></p>
+                <p style="color: #8B579F;">${producto.descripcion}</p>
+            `;
+            
+            window.productosImagenes = producto.imagenes;
+            modal.classList.add('active');
+        }
+
+        function cambiarImagen(direccion, total) {
+            imagenActual = (imagenActual + direccion + total) % total;
+            const img = document.getElementById('carruselImg');
+            const actual = document.getElementById('carruselActual');
+            img.src = window.productosImagenes[imagenActual].url;
+            actual.textContent = imagenActual + 1;
+        }
+
+        function abrirLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function cerrarLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function cerrarProducto() {
+            document.getElementById('productoModal').classList.remove('active');
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('productoModal');
+            if (e.target === modal) cerrarProducto();
+            
+            const lightbox = document.getElementById('lightbox');
+            if (e.target === lightbox) cerrarLightbox();
+        });
+    </script>
+</body>
+</html>
