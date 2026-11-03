@@ -6,8 +6,8 @@ const productosData = [
     "porcentajeDescuento": 20,
     "categoria": "Electrodomésticos",
     "imagenes": [
-      { "name": "refrigerador", "url": "../imagenes/productos/refrigerador.jpg" },
-      { "name": "refrigerador-alt", "url": "../imagenes/productos/rosas.jpg" }
+      { "name": "refrigerador", "url": "./imagenes/productos/refrigerador.jpg" },
+      { "name": "refrigerador-alt", "url": "./imagenes/productos/rosas.jpg" }
     ],
     "whatsapp": "Me%20interesa%20el%20Refrigerador"
   },
@@ -18,8 +18,8 @@ const productosData = [
     "porcentajeDescuento": 15,
     "categoria": "Tecnología",
     "imagenes": [
-      { "name": "televisor", "url": "../imagenes/productos/televisor.jpg" },
-      { "name": "televisor-alt", "url": "../imagenes/productos/auriculares.jpg" }
+      { "name": "televisor", "url": "./imagenes/productos/televisor.jpg" },
+      { "name": "televisor-alt", "url": "./imagenes/productos/auriculares.jpg" }
     ],
     "whatsapp": "Me%20interesa%20el%20Televisor%204K"
   },
@@ -30,7 +30,7 @@ const productosData = [
     "porcentajeDescuento": 10,
     "categoria": "Flores y Detalles",
     "imagenes": [
-      { "name": "rosas", "url": "../imagenes/productos/rosas.jpg" }
+      { "name": "rosas", "url": "./imagenes/productos/rosas.jpg" }
     ],
     "whatsapp": "Me%20interesa%20el%20Ramo%20de%20Rosas"
   },
@@ -41,7 +41,7 @@ const productosData = [
     "porcentajeDescuento": 0,
     "categoria": "Peluches",
     "imagenes": [
-      { "name": "oso", "url": "../imagenes/productos/oso.jpg" }
+      { "name": "oso", "url": "./imagenes/productos/oso.jpg" }
     ],
     "whatsapp": "Me%20interesa%20el%20Peluche%20de%20Oso"
   },
@@ -52,8 +52,8 @@ const productosData = [
     "porcentajeDescuento": 15,
     "categoria": "Cerámicas",
     "imagenes": [
-      { "name": "ceramica", "url": "../imagenes/productos/ceramica.jpg" },
-      { "name": "ceramica-alt", "url": "../imagenes/productos/plato.jpg" }
+      { "name": "ceramica", "url": "./imagenes/productos/ceramica.jpg" },
+      { "name": "ceramica-alt", "url": "./imagenes/productos/plato.jpg" }
     ],
     "whatsapp": "Me%20interesa%20el%20Juego%20de%20Cerámica"
   },
@@ -64,7 +64,7 @@ const productosData = [
     "porcentajeDescuento": 0,
     "categoria": "Velas",
     "imagenes": [
-      { "name": "vela", "url": "../imagenes/productos/vela.jpg" }
+      { "name": "vela", "url": "./imagenes/productos/vela.jpg" }
     ],
     "whatsapp": "Me%20interesa%20la%20Vela%20Aromática"
   },
@@ -75,7 +75,7 @@ const productosData = [
     "porcentajeDescuento": 20,
     "categoria": "Electrodomésticos",
     "imagenes": [
-      { "name": "licuadora", "url": "../imagenes/productos/licuadora.jpg" }
+      { "name": "licuadora", "url": "./imagenes/productos/licuadora.jpg" }
     ],
     "whatsapp": "Me%20interesa%20la%20Licuadora"
   },
@@ -86,7 +86,7 @@ const productosData = [
     "porcentajeDescuento": 25,
     "categoria": "Tecnología",
     "imagenes": [
-      { "name": "auriculares", "url": "../imagenes/productos/auriculares.jpg" }
+      { "name": "auriculares", "url": "./imagenes/productos/auriculares.jpg" }
     ],
     "whatsapp": "Me%20interesa%20los%20Auriculares"
   },
@@ -97,7 +97,7 @@ const productosData = [
     "porcentajeDescuento": 10,
     "categoria": "Flores y Detalles",
     "imagenes": [
-      { "name": "tulipanes", "url": "../imagenes/productos/tulipanes.jpg" }
+      { "name": "tulipanes", "url": "./imagenes/productos/tulipanes.jpg" }
     ],
     "whatsapp": "Me%20interesa%20el%20Ramo%20de%20Tulipanes"
   },
@@ -108,7 +108,7 @@ const productosData = [
     "porcentajeDescuento": 0,
     "categoria": "Flores y Detalles",
     "imagenes": [
-      { "name": "figura", "url": "../imagenes/productos/figura.jpg" }
+      { "name": "figura", "url": "./imagenes/productos/figura.jpg" }
     ],
     "whatsapp": "Me%20interesa%20la%20Figura%20Decorativa"
   },
@@ -119,7 +119,7 @@ const productosData = [
     "porcentajeDescuento": 5,
     "categoria": "Cerámicas",
     "imagenes": [
-      { "name": "plato", "url": "../imagenes/productos/plato.jpg" }
+      { "name": "plato", "url": "./imagenes/productos/plato.jpg" }
     ],
     "whatsapp": "Me%20interesa%20el%20Plato%20de%20Cerámica"
   },
@@ -130,7 +130,7 @@ const productosData = [
     "porcentajeDescuento": 0,
     "categoria": "Velas",
     "imagenes": [
-      { "name": "vela-perfumada", "url": "../imagenes/productos/vela-perfumada.jpg" }
+      { "name": "vela-perfumada", "url": "./imagenes/productos/vela-perfumada.jpg" }
     ],
     "whatsapp": "Me%20interesa%20la%20Vela%20Perfumada"
   }

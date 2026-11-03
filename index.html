@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
     <title>Nala Boutique Home - Tienda de Detalles para el Hogar</title>
-    <link rel="icon" type="image/png" href="../imagenes/iconos/icono.png">
+    <link rel="icon" type="image/png" href="./imagenes/iconos/icono.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -1517,7 +1517,7 @@
     <header>
         <div class="header-content">
             <a href="#inicio" class="logo-header" onclick="mostrarPagina('inicio'); return false;">
-                <img src="../imagenes/iconos/icono.png" alt="Logo Nala Boutique Home">
+                <img src="./imagenes/iconos/icono.png" alt="Logo Nala Boutique Home">
                 <h1>Nala Boutique Home</h1>
             </a>
             <nav>
@@ -1550,7 +1550,7 @@
         <div class="page active" id="inicioPagina">
             <div class="inicio-page">
                 <div class="inicio-top">
-                    <img src="../imagenes/iconos/icono.png" alt="Logo Nala Boutique Home" class="logo-inicio">
+                    <img src="./imagenes/iconos/icono.png" alt="Logo Nala Boutique Home" class="logo-inicio">
                     <div class="inicio-slider">
                         <button class="slider-btn prev" onclick="sliderAnterior()">❮</button>
                         <div class="slider-container">
@@ -1598,11 +1598,11 @@
                 
                 <div class="datos-contacto">
                     <div class="dato">
-                        <strong><img src="../imagenes/iconos/Whatsapp.png" alt="WhatsApp" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px; mix-blend-mode: multiply;"> WhatsApp</strong>
+                        <strong><img src="./imagenes/iconos/Whatsapp.png" alt="WhatsApp" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px; mix-blend-mode: multiply;"> WhatsApp</strong>
                         <p><a href="https://wa.me/573170674561?text=Hola%20Nala%20Boutique%20Home%2C%20tengo%20una%20pregunta" target="_blank" style="color: #8B579F; text-decoration: none;">+57 3170674561</a></p>
                     </div>
                     <div class="dato">
-                        <strong><img src="../imagenes/iconos/tiktok.png" alt="TikTok" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px; filter: invert(1);"> TikTok</strong>
+                        <strong><img src="./imagenes/iconos/tiktok.png" alt="TikTok" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px; filter: invert(1);"> TikTok</strong>
                         <p><a href="https://www.tiktok.com/@nala.boutique.hom?_r=1&_t=ZS-9B6FT0qHdrS" target="_blank" style="color: #8B579F; text-decoration: none;">@nala.boutique.hom</a></p>
                     </div>
                     <div class="dato">
@@ -1638,17 +1638,17 @@
     <a href="#carrito" class="btn-comprar-flotante" title="Ver carrito y comprar" onclick="mostrarPagina('carrito'); return false;">🛒</a>
 
     <footer>
-        <img src="../imagenes/iconos/icono.png" alt="Logo Nala Boutique Home" class="footer-logo">
+        <img src="./imagenes/iconos/icono.png" alt="Logo Nala Boutique Home" class="footer-logo">
         <p><strong>Nala Boutique Home</strong></p>
         <p>Detalles que enamoran, hogar que inspira</p>
         <p>&copy; 2026 Nala Boutique Home. Todos los derechos reservados.</p>
         <p>
             <a href="https://www.tiktok.com/@nala.boutique.hom?_r=1&_t=ZS-9B6FT0qHdrS" target="_blank" style="color: #FAF5F2; text-decoration: none; margin-right: 20px; display: inline-flex; align-items: center; gap: 8px;">
-                <img src="../imagenes/iconos/tiktok.png" alt="TikTok" style="width: 24px; height: 24px; filter: invert(1);">
+                <img src="./imagenes/iconos/tiktok.png" alt="TikTok" style="width: 24px; height: 24px; filter: invert(1);">
                 Síguenos en TikTok
             </a>
             <a href="https://wa.me/573170674561?text=Hola%20Nala%20Boutique%20Home%2C%20tengo%20una%20pregunta" target="_blank" style="color: #FAF5F2; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
-                <img src="../imagenes/iconos/Whatsapp.png" alt="WhatsApp" style="width: 24px; height: 24px; mix-blend-mode: screen;">
+                <img src="./imagenes/iconos/Whatsapp.png" alt="WhatsApp" style="width: 24px; height: 24px; mix-blend-mode: screen;">
                 Contáctanos por WhatsApp
             </a>
         </p>
@@ -1693,7 +1693,7 @@
                     precioConDescuento: producto.precioConDescuento,
                     precioOriginal: producto.precioOriginal,
                     porcentajeDescuento: producto.porcentajeDescuento,
-                    imagen: producto.imagenes && producto.imagenes.length > 0 ? producto.imagenes[0].url : '../imagenes/iconos/icono.png',
+                    imagen: producto.imagenes && producto.imagenes.length > 0 ? producto.imagenes[0].url : './imagenes/iconos/icono.png',
                     cantidad: 1,
                     whatsapp: productoData.whatsapp
                 });
@@ -1739,7 +1739,7 @@
                     const precioTotal = precioUnitario * item.cantidad;
                     html += `
                         <div class="carrito-item">
-                            <img src="${item.imagen}" alt="${item.nombre}" onerror="this.src='../imagenes/iconos/icono.png'">
+                            <img src="${item.imagen}" alt="${item.nombre}" onerror="this.src='./imagenes/iconos/icono.png'">
                             <div class="carrito-item-info">
                                 <div class="carrito-item-nombre">${item.nombre}</div>
                                 <div class="carrito-item-precio">$${precioUnitario.toLocaleString('es-CO')} COP x ${item.cantidad} = $${precioTotal.toLocaleString('es-CO')} COP</div>
@@ -1815,15 +1815,15 @@
         function inicializarSliderInicio() {
             // Cargar imágenes del slider desde la carpeta slide
             sliderImagenes = [
-                { url: '../imagenes/slide/slide1.png', nombre: 'Slide 1' },
-                { url: '../imagenes/slide/slide2.png', nombre: 'Slide 2' },
-                { url: '../imagenes/slide/slide3.png', nombre: 'Slide 3' }
+                { url: './imagenes/slide/slide1.png', nombre: 'Slide 1' },
+                { url: './imagenes/slide/slide2.png', nombre: 'Slide 2' },
+                { url: './imagenes/slide/slide3.png', nombre: 'Slide 3' }
             ];
 
             // Si no hay imágenes, agregar el logo
             if (sliderImagenes.length === 0) {
                 sliderImagenes.push({
-                    url: '../imagenes/iconos/icono.png',
+                    url: './imagenes/iconos/icono.png',
                     nombre: 'Logo'
                 });
             }
@@ -1834,7 +1834,7 @@
             sliderImagenes.forEach(img => {
                 const slide = document.createElement('div');
                 slide.className = 'slider-slide';
-                slide.innerHTML = `<img src="${img.url}" alt="${img.nombre}" onerror="this.src='../imagenes/iconos/icono.png'">`;
+                slide.innerHTML = `<img src="${img.url}" alt="${img.nombre}" onerror="this.src='./imagenes/iconos/icono.png'">`;
                 sliderTrack.appendChild(slide);
             });
 
@@ -1890,7 +1890,7 @@
                     precioOriginal: precioOriginal,
                     porcentajeDescuento: porcentajeDescuento,
                     categoria: p.categoria || '',
-                    imagenes: p.imagenes || [{ name: 'default', url: '../imagenes/iconos/icono.png' }],
+                    imagenes: p.imagenes || [{ name: 'default', url: './imagenes/iconos/icono.png' }],
                     whatsapp: p.whatsapp || ''
                 };
             });
@@ -1980,9 +1980,9 @@
                 };
                 const imgUrl = producto.imagenes && producto.imagenes.length > 0 
                     ? producto.imagenes[0].url 
-                    : '../imagenes/iconos/icono.png';
+                    : './imagenes/iconos/icono.png';
                 div.innerHTML = `
-                    <img src="${imgUrl}" alt="${producto.nombre}" class="producto-imagen" onerror="this.src='../imagenes/iconos/icono.png'">
+                    <img src="${imgUrl}" alt="${producto.nombre}" class="producto-imagen" onerror="this.src='./imagenes/iconos/icono.png'">
                     <h3>${producto.nombre}</h3>
                     <p>${producto.descripcion.substring(0, 60)}...</p>
                     <div class="precio-container">
@@ -2064,14 +2064,14 @@
             const hasMultipleImages = producto.imagenes && producto.imagenes.length > 1;
             const imgUrl = producto.imagenes && producto.imagenes.length > 0 
                 ? producto.imagenes[0].url 
-                : '../imagenes/iconos/icono.png';
+                : './imagenes/iconos/icono.png';
             
             let carouselHTML = '';
             if (hasMultipleImages) {
                 carouselHTML = `
                     <div class="carrusel">
                         <button class="carrusel-btn prev" onclick="cambiarImagen(-1, ${producto.imagenes.length})">❮</button>
-                        <img id="carruselImg" src="${imgUrl}" alt="${producto.nombre}" onclick="abrirLightbox(this.src)" onerror="this.src='../imagenes/iconos/icono.png'">
+                        <img id="carruselImg" src="${imgUrl}" alt="${producto.nombre}" onclick="abrirLightbox(this.src)" onerror="this.src='./imagenes/iconos/icono.png'">
                         <button class="carrusel-btn next" onclick="cambiarImagen(1, ${producto.imagenes.length})">❯</button>
                         <div class="carrusel-info">
                             <span id="carruselActual">1</span> / <span id="carruselTotal">${producto.imagenes.length}</span>
@@ -2080,7 +2080,7 @@
                 `;
             } else {
                 carouselHTML = `
-                    <img src="${imgUrl}" alt="${producto.nombre}" onclick="abrirLightbox(this.src)" onerror="this.src='../imagenes/nala-icono.jfif'" style="width: 100%; height: 360px; object-fit: cover; border-radius: 12px; cursor: pointer; margin-bottom: 20px; display: block;">
+                    <img src="${imgUrl}" alt="${producto.nombre}" onclick="abrirLightbox(this.src)" onerror="this.src='./imagenes/iconos/icono.png'" style="width: 100%; height: 360px; object-fit: cover; border-radius: 12px; cursor: pointer; margin-bottom: 20px; display: block;">
                 `;
             }
             
