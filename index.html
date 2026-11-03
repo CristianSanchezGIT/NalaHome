@@ -950,6 +950,22 @@
             color: #8B579F;
         }
 
+        .carrito-nota-pago,
+        .checkout-nota-pago {
+            color: #5C3B65;
+            font-size: 0.95em;
+        }
+
+        .carrito-nota-pago {
+            margin: -8px 0 16px;
+            text-align: center;
+        }
+
+        .checkout-nota-pago {
+            grid-column: 1 / -1;
+            margin: 0;
+        }
+
         .btn-comprar-carrito {
             width: 100%;
             background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
@@ -967,6 +983,76 @@
         .btn-comprar-carrito:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .checkout-form {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #D9C9DF;
+        }
+
+        .checkout-form h3,
+        .checkout-form-actions {
+            grid-column: 1 / -1;
+        }
+
+        .checkout-form h3 {
+            margin: 0;
+            color: #5C3B65;
+        }
+
+        .checkout-form label {
+            display: grid;
+            gap: 6px;
+            color: #5C3B65;
+            font-weight: 500;
+        }
+
+        .checkout-form input,
+        .checkout-form select {
+            width: 100%;
+            min-height: 44px;
+            padding: 10px 12px;
+            border: 1px solid #CBB8D2;
+            border-radius: 8px;
+            background: #FFFFFF;
+            color: #34283A;
+            font: inherit;
+        }
+
+        .checkout-form input:focus,
+        .checkout-form select:focus {
+            outline: 2px solid #8B579F;
+            outline-offset: 2px;
+        }
+
+        .checkout-form-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .checkout-form-actions button {
+            min-height: 48px;
+            padding: 12px 18px;
+            border: 0;
+            border-radius: 8px;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-enviar-pedido {
+            flex: 1;
+            background: #168A61;
+            color: #FFFFFF;
+        }
+
+        .btn-cancelar-pedido {
+            background: #EFE8F1;
+            color: #5C3B65;
         }
 
         /* Página Contacto */
@@ -1225,18 +1311,44 @@
             }
 
             nav {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                width: 100%;
                 gap: 8px;
+                margin-left: 0;
+                justify-content: center;
             }
 
             .nav-btn {
-                padding: 6px 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                min-width: 0;
+                min-height: 40px;
+                padding: 6px 5px;
                 font-size: 0.8em;
-                flex: 1;
-                min-width: 70px;
+                line-height: 1.15;
+                text-align: center;
+            }
+
+            .carrito-btn {
+                grid-column: 2;
+                padding: 6px 5px !important;
+                font-size: 1.2em;
             }
 
             .page-container {
                 padding: 20px 12px;
+            }
+
+            .checkout-form {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 12px;
+            }
+
+            .checkout-form-actions {
+                flex-direction: column;
             }
 
             .inicio-page {
@@ -1659,6 +1771,7 @@
         let productos = [];
         const categorias = ["Electrodomésticos", "Tecnología", "Flores y Detalles", "Peluches", "Cerámicas", "Velas"];
         let carrito = [];
+        let formularioEnvioVisible = false;
         let categoriaSeleccionada = null;
         let terminoBusqueda = '';
 
@@ -1729,8 +1842,13 @@
         // Actualizar contenido de la página del carrito
         function actualizarPaginaCarrito() {
             const contenido = document.getElementById('contenidoCarritoPagina');
+            const formularioAnterior = document.getElementById('formularioEnvio');
+            const valoresFormulario = formularioAnterior
+                ? Object.fromEntries(new FormData(formularioAnterior))
+                : null;
             
             if (carrito.length === 0) {
+                formularioEnvioVisible = false;
                 contenido.innerHTML = '<div class="carrito-vacio">Tu carrito está vacío 🛒</div>';
             } else {
                 let html = '<div class="carrito-items">';
@@ -1761,10 +1879,77 @@
                     <div class="carrito-total">
                         <span>Total: <span class="carrito-total-cantidad">$${precioTotal.toLocaleString('es-CO')} COP</span></span>
                     </div>
-                    <button class="btn-comprar-carrito" onclick="comprarCarrito()">💚 Comprar Todo por WhatsApp</button>
+                    <p class="carrito-nota-pago"><strong>Pago contra entrega:</strong> pagas al recibir tu pedido.</p>
                 `;
+
+                if (formularioEnvioVisible) {
+                    html += `
+                        <form id="formularioEnvio" class="checkout-form" onsubmit="enviarPedidoWhatsApp(event)">
+                            <h3>Datos para agendar el envío</h3>
+                            <label>Nombre
+                                <input name="nombre" type="text" autocomplete="name" required>
+                            </label>
+                            <label>Dirección
+                                <input name="direccion" type="text" autocomplete="street-address" required>
+                            </label>
+                            <label>Localidad
+                                <select name="localidad" autocomplete="address-level2" required>
+                                    <option value="" selected disabled>Selecciona una localidad</option>
+                                    <option value="Usaquén">Usaquén</option>
+                                    <option value="Chapinero">Chapinero</option>
+                                    <option value="Santa Fe">Santa Fe</option>
+                                    <option value="San Cristóbal">San Cristóbal</option>
+                                    <option value="Usme">Usme</option>
+                                    <option value="Tunjuelito">Tunjuelito</option>
+                                    <option value="Bosa">Bosa</option>
+                                    <option value="Kennedy">Kennedy</option>
+                                    <option value="Fontibón">Fontibón</option>
+                                    <option value="Engativá">Engativá</option>
+                                    <option value="Suba">Suba</option>
+                                    <option value="Barrios Unidos">Barrios Unidos</option>
+                                    <option value="Teusaquillo">Teusaquillo</option>
+                                    <option value="Los Mártires">Los Mártires</option>
+                                    <option value="Antonio Nariño">Antonio Nariño</option>
+                                    <option value="Puente Aranda">Puente Aranda</option>
+                                    <option value="La Candelaria">La Candelaria</option>
+                                    <option value="Rafael Uribe Uribe">Rafael Uribe Uribe</option>
+                                    <option value="Ciudad Bolívar">Ciudad Bolívar</option>
+                                    <option value="Sumapaz">Sumapaz</option>
+                                    <option value="Otra">Otra</option>
+                                </select>
+                            </label>
+                            <label>Teléfono de contacto
+                                <input name="telefono" type="tel" autocomplete="tel" inputmode="tel" required>
+                            </label>
+                            <label>Medio de pago
+                                <select name="medioPago" required>
+                                    <option value="" selected disabled>Selecciona un medio de pago</option>
+                                    <option value="Efectivo">Efectivo</option>
+                                    <option value="Nequi">Nequi</option>
+                                    <option value="Daviplata">Daviplata</option>
+                                </select>
+                            </label>
+                            <p class="checkout-nota-pago"><strong>Pago contra entrega:</strong> pagas al recibir tu pedido.</p>
+                            <div class="checkout-form-actions">
+                                <button class="btn-enviar-pedido" type="submit">Continuar</button>
+                                <button class="btn-cancelar-pedido" type="button" onclick="cancelarCompra()">Volver al carrito</button>
+                            </div>
+                        </form>
+                    `;
+                } else {
+                    html += '<button class="btn-comprar-carrito" onclick="comprarCarrito()">💚 Comprar Todo</button>';
+                }
                 
                 contenido.innerHTML = html;
+
+                if (valoresFormulario) {
+                    const formularioActual = document.getElementById('formularioEnvio');
+                    Object.entries(valoresFormulario).forEach(([campo, valor]) => {
+                        if (formularioActual.elements[campo]) {
+                            formularioActual.elements[campo].value = valor;
+                        }
+                    });
+                }
             }
         }
 
@@ -1791,7 +1976,32 @@
         function comprarCarrito() {
             if (carrito.length === 0) return;
 
-            let mensaje = '🛒 *Hola Nala Boutique Home*\n\n*Detalles de mi pedido:*\n\n';
+            formularioEnvioVisible = true;
+            actualizarPaginaCarrito();
+            document.getElementById('formularioEnvio').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            document.querySelector('#formularioEnvio input[name="nombre"]').focus({ preventScroll: true });
+        }
+
+        function cancelarCompra() {
+            formularioEnvioVisible = false;
+            actualizarPaginaCarrito();
+        }
+
+        function enviarPedidoWhatsApp(event) {
+            event.preventDefault();
+            const datosEnvio = Object.fromEntries(new FormData(event.currentTarget));
+            const nombre = datosEnvio.nombre.trim();
+            const direccion = datosEnvio.direccion.trim();
+            const localidad = datosEnvio.localidad.trim();
+            const telefono = datosEnvio.telefono.trim();
+            const medioPago = datosEnvio.medioPago;
+
+            if (!nombre || !direccion || !localidad || !telefono || !medioPago) {
+                alert('Completa todos los datos para agendar el envío.');
+                return;
+            }
+
+            let mensaje = `🛒 *Hola Nala Boutique Home*\n\n*Datos para agendar el envío:*\nNombre: ${nombre}\nDirección: ${direccion}\nLocalidad: ${localidad}\nTeléfono de contacto: ${telefono}\nModalidad de pago: Contra entrega\nMedio de pago: ${medioPago}\n\n*Detalles de mi pedido:*\n\n`;
             let precioTotal = 0;
 
             carrito.forEach(item => {
