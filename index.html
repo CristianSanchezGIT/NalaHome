@@ -373,6 +373,9 @@
             margin-bottom: 20px;
             display: flex;
             justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .buscador-input {
@@ -387,6 +390,26 @@
             background: #FAF5F2;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(139, 87, 159, 0.1);
+        }
+
+        .orden-select {
+            width: 100%;
+            max-width: 240px;
+            min-height: 46px;
+            padding: 10px 14px;
+            border: 2px solid #E8D9F0;
+            border-radius: 25px;
+            color: #5C3B65;
+            background: #FAF5F2;
+            font: inherit;
+            box-shadow: 0 4px 12px rgba(139, 87, 159, 0.1);
+        }
+
+        .orden-select:focus {
+            outline: none;
+            border-color: #8B579F;
+            box-shadow: 0 6px 20px rgba(139, 87, 159, 0.2);
+            background: white;
         }
 
         .buscador-input:focus {
@@ -490,7 +513,7 @@
 
         .producto-imagen {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
             border-radius: 12px;
             margin-bottom: 15px;
@@ -643,7 +666,7 @@
 
         .carrusel img {
             width: 100%;
-            height: 360px;
+            height: 380px;
             object-fit: cover;
             border-radius: 12px;
             display: block;
@@ -1230,7 +1253,7 @@
             }
 
             .carrusel img {
-                height: 280px;
+                height: 300px;
             }
 
             .contacto-page {
@@ -1342,6 +1365,15 @@
                 padding: 20px 12px;
             }
 
+            .buscador-container {
+                justify-content: stretch;
+            }
+
+            .buscador-input,
+            .orden-select {
+                max-width: none;
+            }
+
             .checkout-form {
                 grid-template-columns: minmax(0, 1fr);
                 gap: 12px;
@@ -1446,7 +1478,7 @@
             }
 
             .producto-imagen {
-                height: 140px;
+                height: 160px;
             }
 
             .producto h3 {
@@ -1486,7 +1518,7 @@
             }
 
             .carrusel img {
-                height: 200px;
+                height: 220px;
                 border-radius: 10px;
             }
 
@@ -1697,6 +1729,13 @@
             
             <div class="buscador-container">
                 <input type="text" id="inputBuscador" class="buscador-input" placeholder="🔍 Buscar productos..." oninput="filtrarProductos()">
+                <select id="ordenProductos" class="orden-select" aria-label="Ordenar productos" onchange="filtrarProductos()">
+                    <option value="predeterminado">Orden predeterminado</option>
+                    <option value="precio-ascendente">Precio: menor a mayor</option>
+                    <option value="precio-descendente">Precio: mayor a menor</option>
+                    <option value="nombre-ascendente">Nombre: A–Z</option>
+                    <option value="nombre-descendente">Nombre: Z–A</option>
+                </select>
             </div>
 
             <div id="lista-productos"></div>
@@ -1719,7 +1758,7 @@
                     </div>
                     <div class="dato">
                         <strong>📍 Ubicación</strong>
-                        <p>Bogota, Colombia</p>
+                        <p>Bogotá, Colombia</p>
                     </div>
                 </div>
                 
@@ -1775,6 +1814,14 @@
         let categoriaSeleccionada = null;
         let terminoBusqueda = '';
 
+        function normalizarBusqueda(texto) {
+            return texto.normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, ' ')
+                .trim();
+        }
+
         // Cargar carrito del localStorage
         function cargarCarrito() {
             const carritoGuardado = localStorage.getItem('carritoNala');
@@ -1792,9 +1839,8 @@
 
         // Agregar producto al carrito
         function agregarAlCarrito(nombreProducto) {
-            const productoData = productosData.find(p => p.nombre === nombreProducto);
             const producto = productos.find(p => p.nombre === nombreProducto);
-            if (!producto || !productoData) return;
+            if (!producto) return;
 
             const itemCarrito = carrito.find(item => item.nombre === nombreProducto);
             
@@ -1807,8 +1853,7 @@
                     precioOriginal: producto.precioOriginal,
                     porcentajeDescuento: producto.porcentajeDescuento,
                     imagen: producto.imagenes && producto.imagenes.length > 0 ? producto.imagenes[0].url : './imagenes/iconos/icono.png',
-                    cantidad: 1,
-                    whatsapp: productoData.whatsapp
+                    cantidad: 1
                 });
             }
             
@@ -2008,13 +2053,14 @@
                 const precioUnitario = item.precioConDescuento || item.precio || 0;
                 const subtotal = precioUnitario * item.cantidad;
                 precioTotal += subtotal;
-                mensaje += `• ${item.nombre}\n  Cantidad: ${item.cantidad}\n  Precio unitario: $${precioUnitario.toLocaleString('es-CO')}\n  Subtotal: $${subtotal.toLocaleString('es-CO')}\n\n`;
+                const mensajeProducto = `Me interesa ${item.nombre}`;
+                mensaje += `• ${mensajeProducto}\n  Cantidad: ${item.cantidad}\n  Precio unitario: $${precioUnitario.toLocaleString('es-CO')}\n  Subtotal: $${subtotal.toLocaleString('es-CO')}\n\n`;
             });
 
             mensaje += `📊 *Total del pedido: $${precioTotal.toLocaleString('es-CO')}*\n\n`;
             mensaje += 'Por favor confirmar disponibilidad y envío. ¡Gracias!';
 
-            const enlaceWhatsApp = 'https://wa.me/573123456789?text=' + encodeURIComponent(mensaje);
+            const enlaceWhatsApp = 'https://wa.me/573170674561?text=' + encodeURIComponent(mensaje);
             window.open(enlaceWhatsApp, '_blank');
         }
 
@@ -2100,8 +2146,8 @@
                     precioOriginal: precioOriginal,
                     porcentajeDescuento: porcentajeDescuento,
                     categoria: p.categoria || '',
-                    imagenes: p.imagenes || [{ name: 'default', url: './imagenes/iconos/icono.png' }],
-                    whatsapp: p.whatsapp || ''
+                    medida: p.medida || '',
+                    imagenes: p.imagenes || [{ name: 'default', url: './imagenes/iconos/icono.png' }]
                 };
             });
             console.log('✅ Productos cargados:', productos.length);
@@ -2157,7 +2203,7 @@
                 categoriaSeleccionada = filtro;
             }
 
-            let productosFiltrados = productos;
+            let productosFiltrados = [...productos];
 
             // Filtrar por categoría
             if (categoriaSeleccionada) {
@@ -2165,11 +2211,25 @@
             }
 
             // Filtrar por término de búsqueda
-            if (terminoBusqueda) {
+            const terminosBusqueda = normalizarBusqueda(terminoBusqueda).split(/\s+/).filter(Boolean);
+            if (terminosBusqueda.length > 0) {
                 productosFiltrados = productosFiltrados.filter(p => 
-                    p.nombre.toLowerCase().includes(terminoBusqueda) || 
-                    p.descripcion.toLowerCase().includes(terminoBusqueda)
+                    terminosBusqueda.every(termino => {
+                        const textoProducto = normalizarBusqueda(`${p.nombre} ${p.descripcion} ${p.categoria}`);
+                        return textoProducto.includes(termino);
+                    })
                 );
+            }
+
+            const orden = document.getElementById('ordenProductos').value;
+            if (orden === 'precio-ascendente') {
+                productosFiltrados.sort((a, b) => a.precioConDescuento - b.precioConDescuento);
+            } else if (orden === 'precio-descendente') {
+                productosFiltrados.sort((a, b) => b.precioConDescuento - a.precioConDescuento);
+            } else if (orden === 'nombre-ascendente') {
+                productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
+            } else if (orden === 'nombre-descendente') {
+                productosFiltrados.sort((a, b) => b.nombre.localeCompare(a.nombre, 'es', { sensitivity: 'base' }));
             }
 
             if (productosFiltrados.length === 0) {
@@ -2195,6 +2255,7 @@
                     <img src="${imgUrl}" alt="${producto.nombre}" class="producto-imagen" onerror="this.src='./imagenes/iconos/icono.png'">
                     <h3>${producto.nombre}</h3>
                     <p>${producto.descripcion.substring(0, 60)}...</p>
+                    ${producto.medida ? `<p><strong>Medida:</strong> ${producto.medida}</p>` : ''}
                     <div class="precio-container">
                         ${producto.porcentajeDescuento > 0 ? `
                             <div style="display: flex; gap: 10px; align-items: center; justify-content: center;">
@@ -2259,7 +2320,7 @@
         function filtrarProductos() {
             const inputBuscador = document.getElementById('inputBuscador');
             if (inputBuscador) {
-                terminoBusqueda = inputBuscador.value.toLowerCase().trim();
+                terminoBusqueda = inputBuscador.value.trim();
             }
             mostrarProductos();
         }
@@ -2311,6 +2372,7 @@
                     </div>
                 </div>
                 <div class="categoria-badge">${producto.categoria}</div>
+                ${producto.medida ? `<p><strong>Medida:</strong> ${producto.medida}</p>` : ''}
                 <div style="display: flex; gap: 12px; margin: 15px 0;">
                     <button class="btn-agregar" style="flex: 1; margin: 0;" onclick="agregarAlCarrito('${producto.nombre}'); event.stopPropagation();">➕ Agregar al Carrito</button>
                     <button class="btn-whatsapp" style="flex: 1; margin: 0; text-align: center; cursor: pointer; border: none; padding: 14px 20px; border-radius: 8px; font-weight: 600;" onclick="cerrarProducto(); mostrarPagina('carrito');">🛒 Ir al Carrito</button>
