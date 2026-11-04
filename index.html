@@ -766,6 +766,36 @@
             border-radius: 8px;
         }
 
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            z-index: 3001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            transform: translateY(-50%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            background: rgba(40, 30, 45, 0.7);
+            color: #FFFFFF;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(139, 87, 159, 0.95);
+        }
+
+        .lightbox-nav.prev {
+            left: 18px;
+        }
+
+        .lightbox-nav.next {
+            right: 18px;
+        }
+
         .lightbox-close {
             position: absolute;
             top: 15px;
@@ -1684,9 +1714,11 @@
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" onclick="cerrarLightbox()">✕</button>
+        <button class="lightbox-nav prev" type="button" aria-label="Imagen anterior" onclick="cambiarImagenLightbox(-1)" hidden>❮</button>
         <div class="lightbox-container">
             <img id="lightboxImg" src="" alt="Imagen ampliada">
         </div>
+        <button class="lightbox-nav next" type="button" aria-label="Imagen siguiente" onclick="cambiarImagenLightbox(1)" hidden>❯</button>
     </div>
 
     <div class="page-container">
@@ -1774,14 +1806,6 @@
                 <h2 style="color: #5C3B65; margin-bottom: 20px; text-align: center;">🛒 Mi Carrito</h2>
                 <div id="contenidoCarritoPagina"></div>
             </div>
-        </div>
-    </div>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-container">
-            <img id="lightboxImg" src="" alt="Imagen ampliada">
-            <button class="lightbox-close" onclick="cerrarLightbox()">✕</button>
         </div>
     </div>
 
@@ -2283,7 +2307,7 @@
                 "Tecnología": "💻",
                 "Flores y Detalles": "🌹",
                 "Peluches": "🧸",
-                "Cerámicas": "🍽️",
+                "Cerámicas": "🏺",
                 "Velas": "🕯️"
             };
             
@@ -2387,15 +2411,29 @@
 
         function cambiarImagen(direccion, total) {
             imagenActual = (imagenActual + direccion + total) % total;
+            const imagen = window.productosImagenes[imagenActual];
             const img = document.getElementById('carruselImg');
             const actual = document.getElementById('carruselActual');
-            img.src = window.productosImagenes[imagenActual].url;
-            actual.textContent = imagenActual + 1;
+            const lightboxImg = document.getElementById('lightboxImg');
+            if (img) img.src = imagen.url;
+            if (actual) actual.textContent = imagenActual + 1;
+            if (lightboxImg && document.getElementById('lightbox').classList.contains('active')) {
+                lightboxImg.src = imagen.url;
+            }
+        }
+
+        function cambiarImagenLightbox(direccion) {
+            if (!window.productosImagenes || window.productosImagenes.length < 2) return;
+            cambiarImagen(direccion, window.productosImagenes.length);
         }
 
         function abrirLightbox(src) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightboxImg');
+            const mostrarFlechas = window.productosImagenes && window.productosImagenes.length > 1;
+            document.querySelectorAll('.lightbox-nav').forEach(boton => {
+                boton.hidden = !mostrarFlechas;
+            });
             lightboxImg.src = src;
             lightbox.classList.add('active');
         }
